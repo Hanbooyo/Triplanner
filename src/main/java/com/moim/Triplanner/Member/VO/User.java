@@ -22,6 +22,5 @@ public class User {
 
     @Column(nullable = false)
     private String name;
-
     // getter, setter, toString 생략
 }

@@ -28,4 +28,5 @@ public class PlanPlace {
     private Double longitude;
 
     // getter, setter, toString 생략
+    //Test
 }
