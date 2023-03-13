@@ -1,4 +1,4 @@
-package com.moim.Triplanner.Plan.VO;
+package com.moim.Triplanner.Trip.VO;
 
 import java.time.LocalDate;
 import java.util.List;

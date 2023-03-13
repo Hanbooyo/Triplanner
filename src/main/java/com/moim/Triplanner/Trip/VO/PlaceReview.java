@@ -1,4 +1,4 @@
-package com.moim.Triplanner.Plan.VO;
+package com.moim.Triplanner.Trip.VO;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,23 +9,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PLAN_PLACE")
-public class PlanPlace {
+@Table(name = "PLACE_REVIEW")
+public class PlaceReview {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(optional = false)
-    private Plan plan;
+    private PlanPlace place;
 
     @Column(nullable = false)
-    private String name;
+    private String content;
 
     @Column(nullable = false)
-    private Double latitude;
-
-    @Column(nullable = false)
-    private Double longitude;
+    private Integer rating;
 
     // getter, setter, toString 생략
 }
