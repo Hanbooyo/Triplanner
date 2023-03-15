@@ -13,4 +13,54 @@ CREATE TABLE schedules (
                            updated_at TIMESTAMP DEFAULT SYSTIMESTAMP,
                            PRIMARY KEY (id),
                            FOREIGN KEY (trip_id) REFERENCES trips (id)
+); //이거 안쓸듯
+
+
+CREATE TABLE Users (
+                       UserID NUMBER(10) PRIMARY KEY,
+                       Email VARCHAR2(100) UNIQUE NOT NULL,
+                       Password VARCHAR2(100) NOT NULL,
+                       Name VARCHAR2(50) NOT NULL,
+                       Gender CHAR(1) NOT NULL,
+                       Birthday DATE NOT NULL
+);
+
+CREATE TABLE UserAuth (
+                          UserID NUMBER(10) PRIMARY KEY,
+                          EmailAuth BOOLEAN NOT NULL,
+                          GoogleAuth BOOLEAN NOT NULL,
+                          FacebookAuth BOOLEAN NOT NULL,
+                          NaverAuth BOOLEAN NOT NULL,
+                          KakaoAuth BOOLEAN NOT NULL,
+                          FOREIGN KEY (UserID) REFERENCES Users(UserID)
+);
+
+
+
+CREATE TABLE Trip (
+                      TripID NUMBER(10) PRIMARY KEY,
+                      UserID NUMBER(10),
+                      StartDate DATE NOT NULL,
+                      EndDate DATE NOT NULL,
+                      FOREIGN KEY (UserID) REFERENCES Users(UserID)
+);
+
+CREATE TABLE Place (
+                       PlaceID NUMBER(10) PRIMARY KEY,
+                       TripID NUMBER(10),
+                       Name VARCHAR2(100) NOT NULL,
+                       Address VARCHAR2(200) NOT NULL,
+                       Latitude NUMBER(15, 10) NOT NULL,
+                       Longitude NUMBER(15, 10) NOT NULL,
+                       FOREIGN KEY (TripID) REFERENCES Trip(TripID)
+);
+
+CREATE TABLE Route (
+                       RouteID NUMBER(10) PRIMARY KEY,
+                       TripID NUMBER(10),
+                       StartPlaceID NUMBER(10) NOT NULL,
+                       EndPlaceID NUMBER(10) NOT NULL,
+                       FOREIGN KEY (TripID) REFERENCES Trip(TripID),
+                       FOREIGN KEY (StartPlaceID) REFERENCES Place(PlaceID),
+                       FOREIGN KEY (EndPlaceID) REFERENCES Place(PlaceID)
 );
