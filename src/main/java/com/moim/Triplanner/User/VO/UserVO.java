@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Getter
@@ -12,20 +13,23 @@ import javax.persistence.*;
 public class UserVO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "USER_ID")
-    private Long userId;
+    @Column(name = "UserID")
+    private Long id;
 
-    @Column(name = "EMAIL")
+    @Column(name = "Email", unique = true, nullable = false)
     private String email;
 
-    @Column(name = "PASSWORD")
+    @Column(name = "Password", nullable = false)
     private String password;
 
-    @Column(name = "NAME")
+    @Column(name = "Name", nullable = false)
     private String name;
 
-    @Column(name = "PHONE_NUMBER")
-    private String phoneNumber;
+    @Column(name = "Gender", nullable = false)
+    private String gender;
+
+    @Column(name = "Birthday", nullable = false)
+    private Date birthday;
 
     // 생성자, Getter, Setter 생략
 }
