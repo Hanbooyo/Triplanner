@@ -18,7 +18,7 @@ public class UserController {
         return ResponseEntity.ok(userService.getUser(userId));
     }
 
-    @PostMapping("")
+    @PostMapping("/signup")
     public ResponseEntity<Void> signUp(@RequestBody UserVO userVO) {
         userService.createUser(userVO);
         return ResponseEntity.ok().build();
@@ -34,6 +34,13 @@ public class UserController {
     @DeleteMapping("/{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
         userService.deleteUser(userId);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Void> login(@RequestParam("username") String username,
+                                      @RequestParam("password") String password) {
+        // 로그인 기능 구현
         return ResponseEntity.ok().build();
     }
 }
