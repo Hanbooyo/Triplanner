@@ -1,7 +1,5 @@
 package com.moim.Triplanner.config;
 
-import com.moim.Triplanner.User.Service.CustomOAuth2UserService;
-import com.moim.Triplanner.User.Service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
