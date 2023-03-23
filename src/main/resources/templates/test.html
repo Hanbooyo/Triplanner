@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trip Planner</title>
+    <!-- Google Maps API를 불러오기 위한 스크립트 태그 -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+    <link rel="stylesheet" type="text/css" href="../templates/css/style.css">
+    <script src="../templates/js/main.js"></script>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1>Trip Planner</h1>
+    <form th:action="@{/schedule}" method="post">
+        <div>
+            <label for="name">Trip Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="start-date">Start Date:</label>
+            <input type="date" id="start-date" name="startDate" required>
+        </div>
+        <div>
+            <label for="end-date">End Date:</label>
+            <input type="date" id="end-date" name="endDate" required>
+        </div>
+        <div>
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required>
+        </div>
+        <div>
+            <input type="submit" value="Add">
+        </div>
+    </form>
+</div>
+<div>
+    <!-- 지도가 보여질 div 태그 -->
+    <div id="map"></div>
+</div>
+<script>
+    // 구글 맵을 초기화하는 함수
+    function initMap() {
+        // 지도를 보여줄 위치 설정 (서울 시청)
+        const location = {lat: 37.5665, lng: 126.9780};
+        // 지도 생성
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 13,
+            center: location,
+        });
+        // 마커 생성
+        const marker = new google.maps.Marker({
+            position: location,
+            map: map,
+        });
+    }
+</script>
+<!-- 구글 맵 초기화 -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCO4RfIBwQ-MrJ6ymp9gxEBExvy_-q53I&callback=initMap"></script>
+</body>
+</html>
