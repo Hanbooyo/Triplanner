@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Trip Schedule List</title>
+</head>
+<body>
+<h1>Trip Schedule List</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Location</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="tripSchedule : ${tripSchedules}">
+    <td th:text="${tripSchedule.name}"></td>
+    <td th:text="${tripSchedule.startDate}"></td>
+    <td th:text="${tripSchedule.endDate}"></td>
+    <td th:text="${tripSchedule.location}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

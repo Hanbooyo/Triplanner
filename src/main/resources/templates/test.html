@@ -17,27 +17,25 @@
 <body>
 <div>
     <h1>Trip Planner</h1>
-    <form th:action="@{/schedule}" method="post">
+    <!-- trip-schedule-form.html -->
+    <form th:action="@{/schedule/create}" method="post" th:object="${tripSchedule}">
         <div>
             <label for="name">Trip Name:</label>
-            <input type="text" id="name" name="name" required>
+            <input type="text" id="name" name="name" th:field="*{name}" required>
         </div>
         <div>
             <label for="start-date">Start Date:</label>
-            <input type="date" id="start-date" name="startDate" required>
+            <input type="date" id="start-date" name="startDate" th:field="*{startDate}" required>
         </div>
         <div>
             <label for="end-date">End Date:</label>
-            <input type="date" id="end-date" name="endDate" required>
-        </div>
-        <div>
-            <label for="location">Location:</label>
-            <input type="text" id="location" name="location" required>
+            <input type="date" id="end-date" name="endDate" th:field="*{endDate}" required>
         </div>
         <div>
             <input type="submit" value="Add">
         </div>
     </form>
+
 </div>
 <div>
     <!-- 지도가 보여질 div 태그 -->

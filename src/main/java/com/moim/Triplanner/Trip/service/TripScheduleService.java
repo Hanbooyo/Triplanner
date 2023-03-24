@@ -13,12 +13,18 @@ public class TripScheduleService {
     @Autowired
     private TripScheduleRepository tripScheduleRepository;
 
+    // 모든 일정 조회
+    public List<TripSchedule> getAllTripSchedules() {
+        return tripScheduleRepository.findAll();
+    }
+
     public TripSchedule getTripSchedule(Long scheduleId) {
         return tripScheduleRepository.findById(scheduleId).orElse(null);
     }
 
     public void createTripSchedule(TripSchedule tripSchedule) {
         tripScheduleRepository.save(tripSchedule);
+        System.out.println("save 호출");
     }
 
     public void updateTripSchedule(TripSchedule tripSchedule) {

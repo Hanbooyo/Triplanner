@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Getter
@@ -15,7 +15,8 @@ import java.util.Date;
 @Table(name = "trip_schedule")
 public class TripSchedule {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_trip_schedule")
+    @SequenceGenerator(name = "seq_trip_schedule", sequenceName = "SEQ_TRIP_SCHEDULE", allocationSize = 1)
     @Column(name = "schedule_id")
     private Long scheduleId;
 
@@ -30,7 +31,7 @@ public class TripSchedule {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private User user = null;
 
     // getter, setter 메서드 생략
 }
