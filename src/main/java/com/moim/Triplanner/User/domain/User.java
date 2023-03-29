@@ -1,18 +1,19 @@
 package com.moim.Triplanner.User.domain;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
 
-@Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
+@Entity
 @Table(name = "USERS")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
@@ -39,5 +40,8 @@ public class User {
     @Column(name = "MODIFIED_DATE")
     private Date modifiedDate;
 
-    // getter, setter 메서드 생략
+    public void encryptPassword() {
+        this.password = BCrypt.hashpw(this.password, BCrypt.gensalt());
+    }
 }
+
